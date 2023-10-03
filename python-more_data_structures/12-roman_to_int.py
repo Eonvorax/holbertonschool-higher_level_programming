@@ -25,10 +25,11 @@ def roman_to_int(roman_string):
         if (roman_string[i] not in ("IVXLCDM")):
             # Input string is not a valid roman numeral
             return 0
-        # More memory-intensive that I'd like but had to respect 80-char limit
-        if ((i + 1) < length and roman_string[i:i+2] in ["IV", "IX"]):
-            # Special case: subtract 1, then keep going to add 'V' or 'X' next
-            decimal -= 1
+        # Ugly but had to respect 80-char limit
+        if ((i + 1) < length
+                and table[roman_string[i]] < table[roman_string[i + 1]]):
+            # Special case: subtract 1, then keep going to add next numeral
+            decimal -= table[roman_string[i]]
         else:
             # Usual case: find numeral value in the table and add to the sum
             decimal += table[roman_string[i]]

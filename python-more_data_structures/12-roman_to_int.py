@@ -22,6 +22,9 @@ def roman_to_int(roman_string):
     length = len(roman_string)
 
     for i in range(0, length):
+        if (roman_string[i] not in ("IVXLCDM")):
+            # Input string is not a valid roman numeral
+            return 0
         # More memory-intensive that I'd like but had to respect 80-char limit
         if ((i + 1) < length and roman_string[i:i+2] in ["IV", "IX"]):
             # Special case: subtract 1, then keep going to add 'V' or 'X' next

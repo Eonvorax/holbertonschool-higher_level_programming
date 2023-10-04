@@ -11,8 +11,8 @@ def complex_delete(a_dictionary, value):
     Returns:
         The modified dictionary with the specified keys removed.
     """
-    if not a_dictionary:
-        return None
+    if not a_dictionary or not value:
+        return a_dictionary
 
     # Creating a list of the keys to delete
     keys_to_delete = []

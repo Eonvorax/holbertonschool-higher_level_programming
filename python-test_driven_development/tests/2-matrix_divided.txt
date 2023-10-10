@@ -101,3 +101,8 @@ TypeError: div must be a number
 >>> div = 2
 >>> len(matrix_divided(matrix, div)) == len(matrix)
 True
+
+# Dividing by infinite float value
+>>> matrix = [[2, 4, 6], [8, 12, 16]]
+>>> matrix_divided(matrix, float('inf'))
+[[0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]

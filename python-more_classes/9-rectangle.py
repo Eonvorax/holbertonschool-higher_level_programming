@@ -99,7 +99,7 @@ class Rectangle:
         Returns:
             Rectangle: new Rectangle object with equal width and height
         """
-        return Rectangle(size, size)
+        return cls(size, size)
 
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):

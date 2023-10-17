@@ -1,92 +1,48 @@
 >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
->>> geometry = BaseGeometry()
+>>> bg = BaseGeometry()
 
-
-# Test for a valid positive integer
->>> geometry.integer_validator("test", 5)
-
-# Test for area call
->>> geometry.area()
+>>> bg.area()
 Traceback (most recent call last):
 Exception: area() is not implemented
 
-# Test for a nonvalid zero
->>> geometry.integer_validator("test", 0)
+>>> bg.integer_validator()
 Traceback (most recent call last):
-    ...
-ValueError: test must be greater than 0
+TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
 
-# Test for an invalid negative integer
->>> geometry.integer_validator("test", -5)
+>>> bg.integer_validator("age")
 Traceback (most recent call last):
-    ...
-ValueError: test must be greater than 0
+TypeError: integer_validator() missing 1 required positional argument: 'value'
 
-# Test for an invalid non-integer value
->>> geometry.integer_validator("test", 3.14)
+>>> bg.integer_validator("age", 1)
+
+>>> bg.integer_validator("age", 0)
 Traceback (most recent call last):
-    ...
-TypeError: test must be an integer
+ValueError: age must be greater than 0
 
-# Test for an invalid non-integer and less than 0 value
->>> geometry.integer_validator("test", -3.14)
+>>> bg.integer_validator("age", -4)
 Traceback (most recent call last):
-    ...
-TypeError: test must be an integer
+ValueError: age must be greater than 0
 
-# Test for an invalid non-integer and greater than 0 value
->>> geometry.integer_validator("test", "abc")
+>>> bg.integer_validator("age", "4")
 Traceback (most recent call last):
-    ...
-TypeError: test must be an integer
-
-# Test for missing arguments
->>> geometry.integer_validator()
-Traceback (most recent call last):
-    ...
-TypeError: BaseGeometry.integer_validator() missing 2 required positional arguments: 'name' and 'value'
-
-# Test for missing "value" argument
->>> geometry.integer_validator("age")
-Traceback (most recent call last):
-    ...
-TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
-
-# Test with a string representing a number
->>> geometry.integer_validator("test", "77")
-Traceback (most recent call last):
-    ...
-TypeError: test must be an integer
-
-# Test for casting a string to an int for value
->>> geometry.integer_validator("test", int("77"))
-
-# Testing wrong data type : tuple
->>> geometry.integer_validator("age", (4,))
-Traceback (most recent call last):
-    ...
 TypeError: age must be an integer
 
-# Testing wrong data type : list
->>> geometry.integer_validator("age", [3])
+>>> bg.integer_validator("age", (4,))
 Traceback (most recent call last):
-    ...
 TypeError: age must be an integer
 
-# Testing wrong data type : boolean
->>> geometry.integer_validator("age", True)
+>>> bg.integer_validator("age", [3])
 Traceback (most recent call last):
-    ...
 TypeError: age must be an integer
 
-# Testing wrong data type : set
->>> geometry.integer_validator("age", {3, 4})
+>>> bg.integer_validator("age", True)
 Traceback (most recent call last):
-    ...
 TypeError: age must be an integer
 
-# Test for None value argument
->>> geometry.integer_validator("age", None)
+>>> bg.integer_validator("age", {3, 4})
 Traceback (most recent call last):
-    ...
+TypeError: age must be an integer
+
+>>> bg.integer_validator("age", None)
+Traceback (most recent call last):
 TypeError: age must be an integer

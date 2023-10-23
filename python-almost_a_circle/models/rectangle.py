@@ -153,6 +153,11 @@ class Rectangle(Base):
     def display(self):
         """
         Prints the rectangle using the '#' character.
+        The output is offset vertically by y and horizontally by x
         """
+        for newline in range(0, self.__y):
+            print()
+
         for row in range(0, self.__height):
+            print(" " * self.__x, end="")
             print("#" * self.__width)

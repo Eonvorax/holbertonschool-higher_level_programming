@@ -3,6 +3,9 @@
 This is the base module
 """
 
+from json import dumps
+"""To convert objects to json"""
+
 
 class Base:
     """
@@ -30,3 +33,16 @@ class Base:
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
+
+    @staticmethod
+    def to_json_string(list_dictionaries):
+        """
+        Returns the JSON string representation of a list of dictionaries.
+
+        Returns:
+            str: The JSON string representation of the list of dictionaries.
+                If the list is empty or None, returns "[]".
+        """
+        if not list_dictionaries or len(list_dictionaries) == 0:
+            return "[]"
+        return dumps(list_dictionaries)

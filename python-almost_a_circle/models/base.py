@@ -3,7 +3,7 @@
 This is the base module
 """
 
-from json import dumps
+from json import dumps, loads
 """To convert objects to json"""
 
 
@@ -64,3 +64,13 @@ class Base:
                     # Converting list_objs to a list of dictionaries
                     list_dicts.append(obj.to_dictionary())
             file.write(cls.to_json_string(list_dicts))
+
+    @staticmethod
+    def from_json_string(json_string):
+        """
+        Returns the list of the JSON string representation 'json_string'.
+        If json_string is empty or None, returns an empty list.
+        """
+        if not json_string or len(json_string) == 0:
+            return []
+        return (loads(json_string))

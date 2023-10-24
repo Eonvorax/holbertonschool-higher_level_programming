@@ -4,6 +4,7 @@ This is the base module
 """
 
 from json import dumps, loads
+from os.path import exists
 """To convert objects to json"""
 
 
@@ -96,3 +97,27 @@ class Base:
             dummy = cls(1)
         dummy.update(**dictionary)
         return dummy
+
+    @classmethod
+    def load_from_file(cls):
+        """
+        Returns a list of instances of the given class from a JSON file.
+        The file used should be of the format <Class_name>.json
+
+        Returns:
+            list: A list of instances (empty if the file doesn't exist)
+        """
+        list_objs = []
+        filename = f"{cls.__name__}.json"
+
+        if not exists(filename):
+            return list_objs
+
+        with open(filename, mode="r", encoding="utf-8") as file:
+            # Extract a list of dictionary representations from the file
+            list_dicts = cls.from_json_string(file.read())
+            # Creating actual instances from the dictionaries in the list
+            for instance_dict in list_dicts:
+                list_objs.append(cls.create(**instance_dict))
+
+        return list_objs

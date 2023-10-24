@@ -59,7 +59,8 @@ class Base:
         """
         list_dicts = []
         with open(f"{cls.__name__}.json", mode="w", encoding="utf-8") as file:
-            for obj in list_objs:
-                # Converting list_objs to a list of dictionaries
-                list_dicts.append(obj.to_dictionary())
+            if list_objs:
+                for obj in list_objs:
+                    # Converting list_objs to a list of dictionaries
+                    list_dicts.append(obj.to_dictionary())
             file.write(cls.to_json_string(list_dicts))

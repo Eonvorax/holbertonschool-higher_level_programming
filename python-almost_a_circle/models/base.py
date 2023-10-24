@@ -46,3 +46,20 @@ class Base:
         if not list_dictionaries or len(list_dictionaries) == 0:
             return "[]"
         return dumps(list_dictionaries)
+
+    @classmethod
+    def save_to_file(cls, list_objs):
+        """
+        Writes the JSON string representation of list_objs to a file.
+        list_objs is first converted to a list of dictionaries.
+
+        Args:
+            list_objs: a list of objects from a cls subclass
+            (Rectangle or Square)
+        """
+        list_dicts = []
+        with open(f"{cls.__name__}.json", mode="w", encoding="utf-8") as file:
+            for obj in list_objs:
+                # Converting list_objs to a list of dictionaries
+                list_dicts.append(obj.to_dictionary())
+            file.write(cls.to_json_string(list_dicts))

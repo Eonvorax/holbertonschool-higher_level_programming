@@ -8,10 +8,7 @@ import MySQLdb
 import sys
 
 
-def main():
-    """
-    Main function handling arguments, then requesting and printing the data
-    """
+if __name__ == "__main__":
 
     database = MySQLdb.connect(
         host="localhost",
@@ -33,7 +30,3 @@ def main():
 
     cursor.close()
     database.close()
-
-
-if __name__ == "__main__":
-    main()

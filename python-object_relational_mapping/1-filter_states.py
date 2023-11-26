@@ -12,9 +12,6 @@ def main():
     """
     Main function handling arguments, then requesting and printing the data
     """
-    if len(sys.argv) != 4:
-        print(f"Usage: {sys.argv[0]} <username> <password> <database>")
-        sys.exit(1)
 
     database = MySQLdb.connect(
         host="localhost",
